@@ -2,13 +2,14 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [todos, setTodos] = useState(['todo 1', 'todo 2'])
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || [])
   const [todo, setTodo] = useState('')
 
   const todosElement = todos.map((todo) => <li>{todo}</li>)
 
   function addTodo() {
     setTodos((prevTodos) => [...prevTodos, todo])
+    localStorage.setItem('todos', JSON.stringify(todos))
     setTodo('')
   }
 
