@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -7,9 +7,12 @@ function App() {
 
   const todosElement = todos.map((todo) => <li>{todo}</li>)
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
+
   function addTodo() {
     setTodos((prevTodos) => [...prevTodos, todo])
-    localStorage.setItem('todos', JSON.stringify(todos))
     setTodo('')
   }
 
